@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Expense Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-gradient-to-br from-blue-950 to-pink-950 text-white min-h-screen">
+  <div class="max-w-4xl mx-auto px-4 py-10">
+    <h1
+      class=" text-3xl bg-clip-text text-transparent mb-8 sm:text-4xl font-extrabold text-center bg-gradient-to-r from-blue-400 to-pink-400">
+      Expense Tracker</h1>
+
+    <div class="bg-gray-800/80 backdrop-blur rounded-xl p-6 shadow-lg">
+      <form id="form" class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+        <div class="sm:col-span-2">
+          <label for="title" class="block text-sm text-gray-300 mb-1">Title</label>
+          <input id="title" type="text" placeholder="e.g. Shopping"
+            class="bg-gray-700/80 rounded-lg w-full text-white placeholder-gray-400 px-3 py-2 outline-none focus:ring-2 focus:ring-pink-500">
+        </div>
+
+        <div>
+          <label for="amount" class="block text-sm text-gray-300 mb-1">Amount</label>
+          <input id="amnt" type="number" placeholder="e.g. 500" step="0.1" min="0"
+            class=" w-full text-white placeholder-gray-400 rounded-lg px-3 bg-gray-700/80 py-2 outline-none focus:ring-2 focus:ring-blue-500">
+
+        </div>
+
+        <div>
+          <label for="category" class="block text-sm text-gray-300 mb-1">Category</label>
+          <select id="category"
+            class="w-full rounded-lg bg-gray-700/80 text-white px-3 py-2 outline-none focus:ring-2 focus:ring-pink-500">
+            <option value="">Select Category</option>
+            <option>Food</option>
+            <option>Shopping</option>
+            <option>Travels</option>
+            <option>Bills</option>
+            <option>Others</option>
+          </select>
+        </div>
+
+        <div class="sm:col-span-4 flex items-center justify-end">
+          <button type="submit"
+            class="bg-gradient-to-r from-pink-500 to-blue-500 hover:from-blue-600 hover:to-pink-600 transition-colors rounded-lg px-5 py-2 font-semibold">
+            Add Expense
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="mt-8 bg-gray-800/80 rounded-xl p-6 shadow-lg">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-semibold">Expenses</h2>
+        <div class="flex gap-2">
+          <select id="filterCategory"
+            class="rounded bg-gray-700/80 text-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="">All Categories</option>
+            <option>Food</option>
+            <option>Travel</option>
+            <option>Shopping</option>
+            <option>Bills</option>
+            <option>Other</option>
+          </select>
+          <select id="sortBy"
+            class="rounded bg-gray-700/80 text-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-pink-500">
+            <option value="dateDesc">Newest</option>
+            <option value="dateAsc">Oldest</option>
+            <option value="categoryAsc">Category A-Z</option>
+            <option value="categoryDesc">Category Z-A</option>
+            <option value="amountDesc">Amount High-Low</option>
+            <option value="amountAsc">Amount Low-High</option>
+          </select>
+         </div>
+      </div>
+
+        <div class="overflow-x-auto">
+        <table class="min-w-full text-left text-sm">
+          <thead class="text-gray-300">
+            <tr>
+              <th class="py-2 pr-4">Title</th>
+              <th class="py-2 pr-4">Amount</th>
+              <th class="py-2 pr-4">Category</th>
+              <th class="py-2 pr-4">Date</th>
+              <th class="py-2 pr-4">Action</th>
+            </tr>
+          </thead>
+          <tbody id="expenseTable" class="divide-y divide-gray-700"></tbody>
+        </table>
+      </div>
+
+      <div>
+         <div class="lg:col-span-2 bg-gray-800/80 rounded-xl p-6 shadow-lg">
+        <h2 class="text-xl font-semibold mb-4 bg-gradient-to-br from-pink-300 to-pink-900 bg-clip-text text-transparent">Category Totals</h2>
+        <div id="categoryTotals" class="text-gray-200 text-sm flex flex-wrap gap-3"></div>
+      </div>
+
+      <div class="bg-gray-800/80 rounded-xl p-6 shadow-lg">
+        <h2 class="text-xl font-semibold mb-4 bg-gradient-to-br from-blue-100 to-blue-900 bg-clip-text text-transparent">Spending Breakdown</h2>
+        <canvas id="expenseChart" height="200"></canvas>
+      </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+  <script src="expence.js"></script>
+</body>
+
+</html>
